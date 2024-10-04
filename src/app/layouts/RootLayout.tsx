@@ -7,7 +7,7 @@ export const RootLayout = () => {
       <Box>
          <Grid container sx={{ minHeight: "100vh" }}>
             <Navbar/>
-            <Grid sx={{ padding: 2, paddingTop: 2.5, }}>
+            <Grid size="grow" sx={{ padding: 2, paddingTop: 2.5, }}>
                <Outlet />
             </Grid>
          </Grid>

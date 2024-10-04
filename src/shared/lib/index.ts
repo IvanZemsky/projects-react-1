@@ -1,0 +1,1 @@
+export { setPath } from "./utils/setPath";

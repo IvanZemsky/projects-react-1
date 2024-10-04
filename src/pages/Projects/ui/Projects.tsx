@@ -1,6 +1,9 @@
 import { Routes } from "@/shared/constants";
+import { setPath } from "@/shared/lib";
 import { Box, Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+
+const {Create} = Routes
 
 export const Projects = () => {
    return (
@@ -10,7 +13,7 @@ export const Projects = () => {
             <Button
                component={Link}
                variant="contained"
-               to={Routes.Projects + Routes.Create}
+               to={Create}
             >
                New
             </Button>

@@ -1,6 +1,15 @@
+import { Palette } from "@mui/icons-material";
+import { blue, grey, orange } from "@mui/material/colors";
 import { createTheme } from '@mui/material/styles';
 
 export const theme = createTheme({
+  palette: {
+    white: {
+      main: '#ffffff',
+      dark: grey[300],
+      contrastText: blue[500],
+    },
+  },
   typography: {
     h1: {
       fontSize: '2rem',

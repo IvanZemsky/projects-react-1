@@ -1,8 +1,8 @@
-import { Grid2 as Grid, Button } from "@mui/material";
+import { Grid2 as Grid } from "@mui/material";
 import { blue } from "@mui/material/colors";
-import AssignmentIcon from "@mui/icons-material/Assignment";
-import { Link } from "react-router-dom";
-import { Routes } from "@/shared/constants";
+
+import { navLinks } from "../model/navLinks";
+import { NavLink } from "@/shared/ui";
 
 export const Navbar = () => {
    return (
@@ -13,16 +13,11 @@ export const Navbar = () => {
             padding: 2,
          }}
       >
-         <Button
-            component={Link}
-            to={Routes.Projects}
-            color="primary"
-            variant="contained"
-            size="large"
-            startIcon={<AssignmentIcon />}
-         >
-            Projects
-         </Button>
+         {navLinks.map((link) => (
+            <NavLink key={link.to} to={link.to} startIcon={link.icon}>
+               {link.text}
+            </NavLink>
+         ))}
       </Grid>
    );
 };
