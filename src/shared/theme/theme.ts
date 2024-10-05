@@ -1,9 +1,14 @@
-import { Palette } from "@mui/icons-material";
 import { blue, grey, orange } from "@mui/material/colors";
 import { createTheme } from '@mui/material/styles';
 
 export const theme = createTheme({
   palette: {
+    secondary: {
+      main: orange[500],
+      light: orange[300],
+      dark: orange[700],
+      contrastText: grey[900],
+    },
     white: {
       main: '#ffffff',
       dark: grey[300],

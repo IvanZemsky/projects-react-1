@@ -8,8 +8,10 @@ export const Navbar = () => {
    return (
       <Grid
          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 1,
             backgroundColor: blue[600],
-            height: "100vh",
             padding: 2,
          }}
       >

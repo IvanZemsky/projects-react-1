@@ -1,6 +1,4 @@
-import { Routes } from "@/shared/constants";
-import { Box, Button, Typography, Input, TextField } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Box, Button, Typography, TextField } from "@mui/material";
 
 export const CreateProject = () => {
    return (
@@ -19,7 +17,7 @@ export const CreateProject = () => {
                id="project-name"
                label="Name"
                variant="filled"
-               sx={{ alignSelf: "flex-start" }}
+               sx={{ alignSelf: "flex-start", maxWidth: 300, width: '100%' }}
                size="small"
             />
 

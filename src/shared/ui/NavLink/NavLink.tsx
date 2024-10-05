@@ -18,6 +18,7 @@ export const NavLink = ({ children, to, ...props }: Props) => {
       color={isActive ? "white" : "primary"}
       variant="contained"
       size="large"
+      sx={{justifyContent: 'flex-start'}}
       {...props}
     >
       {children}
