@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import ViewModuleIcon from "@mui/icons-material/ViewModule";
 import { MouseEvent, useState } from "react";
+import { PageBreadcrumbs } from "@/widgets/PageBreadcrumbs";
 
 const { Create } = Routes;
 

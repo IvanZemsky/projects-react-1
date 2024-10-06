@@ -9,7 +9,6 @@ export const NavLink = ({ children, to, ...props }: Props) => {
   const location = useLocation();
 
   const isActive = location.pathname.includes(to);
-  console.log(isActive)
 
   return (
     <Button
