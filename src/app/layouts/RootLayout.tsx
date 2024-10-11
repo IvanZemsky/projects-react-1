@@ -17,7 +17,7 @@ export const RootLayout = () => {
             <Grid
                sx={{
                   padding: 2,
-                  paddingTop: 1,
+                  paddingTop: 0.5,
                   paddingRight: 3,
                   display: "flex",
                   flexDirection: "column",

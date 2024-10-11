@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 import { RootLayout } from "../layouts/RootLayout";
 import { Routes } from "@/shared/constants";
 import { App } from "../App";
@@ -7,8 +7,11 @@ import { CreateProject } from "@/pages/CreateProject";
 import { setPath } from "@/shared/lib";
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import { Executors } from "@/pages/Executors/ui/Executors";
+import { CreateExecutor } from "@/pages/CreateExecutor";
+import { CreatePosition } from "@/pages/CreatePosition";
+import { Positions } from "@/pages/Positions";
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
    {
       path: Routes.Home,
       element: <RootLayout />,
@@ -29,6 +32,18 @@ export const router = createBrowserRouter([
          {
             path: Routes.Executors,
             element: <Executors />,
+         },
+         {
+            path: setPath(Routes.Executors, Routes.Create),
+            element: <CreateExecutor />,
+         },
+         {
+            path: Routes.Positions,
+            element: <Positions />,
+         },
+         {
+            path: setPath(Routes.Positions, Routes.Create),
+            element: <CreatePosition />,
          },
       ],
    },

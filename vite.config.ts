@@ -12,6 +12,7 @@ export default defineConfig({
          exclude: "",
       }),
    ],
+   base: '/projects-react-1/',
    resolve: {
       alias: {
          "@": path.resolve(__dirname, "./src"),
