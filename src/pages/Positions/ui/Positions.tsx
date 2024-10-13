@@ -1,35 +1,33 @@
 import { Routes } from "@/shared/constants";
-import { Box, Typography, Button } from "@mui/material";
+import { setPath } from "@/shared/lib";
+import { PageHeader } from "@/widgets/PageHeader";
+import { Box, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const {Create} = Routes
+const { Create, Docs } = Routes;
 
 export const Positions = () => {
-   return ( 
+   return (
       <Box>
-         <Box
-            sx={{
-               display: "flex",
-               alignItems: "center",
-               gap: 1,
-               marginBottom: 2,
-            }}
-         >
-            <Typography variant="h1">Positions</Typography>
-
+         <PageHeader title="Positions">
+            <Button
+               component={Link}
+               variant="contained"
+               to={"/" + setPath(Docs, Routes.Positions)}
+            >
+               Docs
+            </Button>
             <Button component={Link} variant="contained" to={Create}>
                New
             </Button>
-         </Box>
+         </PageHeader>
          <Box
             sx={{
                display: "grid",
                gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
                gap: 2,
             }}
-         >
-            
-         </Box>
+         ></Box>
       </Box>
    );
 };

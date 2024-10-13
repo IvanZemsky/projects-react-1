@@ -1,36 +1,40 @@
 import { ProjectCard } from "@/entities/Project";
 import { Routes } from "@/shared/constants";
-import { Box, Typography, Button, ToggleButtonGroup, ToggleButton } from "@mui/material";
+import { setPath } from "@/shared/lib";
+import { PageHeader } from "@/widgets/PageHeader";
+import {
+   Box,
+   Typography,
+   Button,
+   ToggleButtonGroup,
+   ToggleButton,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 
-const {Create} = Routes
+const { Create, Docs } = Routes;
 
 export const Executors = () => {
-   return ( 
+   return (
       <Box>
-         <Box
-            sx={{
-               display: "flex",
-               alignItems: "center",
-               gap: 1,
-               marginBottom: 2,
-            }}
-         >
-            <Typography variant="h1">Executors</Typography>
-
+         <PageHeader title="Executors">
+            <Button
+               component={Link}
+               variant="contained"
+               to={"/" + setPath(Docs, Routes.Executors)}
+            >
+               Docs
+            </Button>
             <Button component={Link} variant="contained" to={Create}>
                New
             </Button>
-         </Box>
+         </PageHeader>
          <Box
             sx={{
                display: "grid",
                gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
                gap: 2,
             }}
-         >
-            
-         </Box>
+         ></Box>
       </Box>
    );
 };

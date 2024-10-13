@@ -8,5 +8,12 @@ export type Project = {
    lead: string
    startDate: string
    endDate: string
-   img: string
+}
+
+export type CreateProjectDto = {
+   name: string
+   description: string
+   lead: string
+   startDate: string
+   endDate: string
 }

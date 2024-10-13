@@ -1,9 +1,9 @@
 import { Button, ButtonProps } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 
-interface Props extends ButtonProps {
+type Props = {
   to: string;
-}
+} & ButtonProps
 
 export const NavLink = ({ children, to, ...props }: Props) => {
   const location = useLocation();

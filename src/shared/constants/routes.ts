@@ -3,5 +3,6 @@ export enum Routes {
    Projects = 'projects',
    Executors = 'executors',
    Positions = 'positions',
+   Docs = 'docs',
    Create = 'create',
 }

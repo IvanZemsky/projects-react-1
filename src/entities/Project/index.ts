@@ -1,2 +1,3 @@
+export { projectStorage } from "./model/storage"
 export { ProjectCard } from "./ui/ProjectCard"
-export {type Project} from '../Project/model/types'
+export {type Project, type CreateProjectDto} from '../Project/model/types'

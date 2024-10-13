@@ -15,10 +15,9 @@ export const CreatePosition = ({}: Props) => {
             <Typography variant="h1">New position</Typography>
 
             <TextField
-               id="project-name"
                label="Name"
                variant="filled"
-               sx={{ alignSelf: "flex-start", maxWidth: 300, width: "100%" }}
+               sx={{ alignSelf: "flex-start", maxWidth: 400, width: "100%" }}
                size="small"
             />
 

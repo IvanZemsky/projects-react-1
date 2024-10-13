@@ -1,4 +1,3 @@
-import { AppStorage } from "@/shared/lib";
 import {
    TextField,
    Button,
@@ -11,7 +10,8 @@ import {
 import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 
-import { type Executor } from "@/entities/Executor";
+import { executorStorage } from "@/entities/Executor";
+import { useNavigate } from "react-router-dom";
 
 type FormValues = {
    name: string;
@@ -27,6 +27,8 @@ export const Form = ({}: Props) => {
       },
    });
 
+   const navigate = useNavigate()
+
    const { register, handleSubmit, getValues } = form;
 
    const onSubmit = (data: FormValues) => {
@@ -36,7 +38,10 @@ export const Form = ({}: Props) => {
          position: getValues("position"),
       };
 
-      AppStorage.set<Executor>("executor", executor);
+      const newExecutor = executorStorage.create(executor)
+      if (newExecutor) {
+         navigate(newExecutor.id)
+      }
    };
 
    return (
@@ -51,14 +56,6 @@ export const Form = ({}: Props) => {
                required
                {...register("name", { maxLength: 35 })}
             />
-
-            {/* <TextField
-               label="Position"
-               variant="filled"
-               sx={{ alignSelf: "flex-start", maxWidth: 400, width: "100%" }}
-               size="small"
-               {...register("position", { maxLength: 30 })}
-            /> */}
 
             <FormControl fullWidth>
                <InputLabel id="executor-position-label">Position</InputLabel>
