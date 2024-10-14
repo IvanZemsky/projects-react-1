@@ -2,14 +2,13 @@ import { createHashRouter } from "react-router-dom";
 import { RootLayout } from "../layouts/RootLayout";
 import { Routes } from "@/shared/constants";
 import { App } from "../App";
-import { Projects } from "@/pages/Projects";
-import { CreateProject } from "@/pages/CreateProject";
 import { setPath } from "@/shared/lib";
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import { Executors } from "@/pages/Executors/ui/Executors";
 import { CreateExecutor } from "@/pages/CreateExecutor";
 import { CreatePosition } from "@/pages/CreatePosition";
 import { Positions } from "@/pages/Positions";
+import { CreateProject, Project, Projects } from "./lazyPages";
 
 export const router = createHashRouter([
    {
@@ -24,6 +23,10 @@ export const router = createHashRouter([
          {
             path: Routes.Projects,
             element: <Projects />,
+         },
+         {
+            path: setPath(Routes.Projects, ':id'),
+            element: <Project />,
          },
          {
             path: setPath(Routes.Projects, Routes.Create),

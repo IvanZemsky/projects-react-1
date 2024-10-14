@@ -4,16 +4,21 @@ import { v4 as uuidv4 } from "uuid";
 
 class ProjectStorage {
    constructor() {
-      const projects = AppStorage.get<Project[]>("projects");
+      const projects = AppStorage.getItems<Project[]>("projects");
       if (!projects) {
-         AppStorage.setItems<Project[]>("projects", []);
+         AppStorage.setItems<Project>("projects", []);
       }
-
    }
 
    public get = () => {
-      return AppStorage.get<Project[]>('projects')
-   }
+      return AppStorage.getItems<Project>("projects");
+   };
+
+   public getById = (id: string) => {
+      return AppStorage.getItems<Project, Project>("projects", (projects) =>
+         projects.find((project) => project.id === id)
+      );
+   };
 
    public create = (projectDto: CreateProjectDto) => {
       const project: Project = {
@@ -22,9 +27,11 @@ class ProjectStorage {
          team: [],
          startDate: formatDate(projectDto.startDate),
          endDate: formatDate(projectDto.endDate),
-      }
+      };
 
-      const newProject = AppStorage.setItems<Project>("projects", project,
+      const newProject = AppStorage.setItems<Project>(
+         "projects",
+         project,
          (items) => ({
             newItems: [...items, project] as Project[],
             returnValue: project,

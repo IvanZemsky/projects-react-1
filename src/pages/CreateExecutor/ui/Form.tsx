@@ -12,6 +12,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import { executorStorage } from "@/entities/Executor";
 import { useNavigate } from "react-router-dom";
+import { Routes } from "@/shared/constants";
 
 type FormValues = {
    name: string;
@@ -23,7 +24,7 @@ export const Form = ({}: Props) => {
    const form = useForm<FormValues>({
       defaultValues: {
          name: "",
-         position: "unspecified",
+         position: "Unspecified",
       },
    });
 
@@ -40,7 +41,7 @@ export const Form = ({}: Props) => {
 
       const newExecutor = executorStorage.create(executor)
       if (newExecutor) {
-         navigate(newExecutor.id)
+         navigate('/' + Routes.Executors)
       }
    };
 
@@ -53,8 +54,7 @@ export const Form = ({}: Props) => {
                variant="filled"
                sx={{ alignSelf: "flex-start", maxWidth: 400, width: "100%" }}
                size="small"
-               required
-               {...register("name", { maxLength: 35 })}
+               {...register("name", { maxLength: 35, required: true })}
             />
 
             <FormControl fullWidth>
@@ -63,12 +63,12 @@ export const Form = ({}: Props) => {
                   id="executor-position"
                   labelId="executor-position-label"
                   label="Position"
-                  value="unspecified"
+                  value="Unspecified"
                   sx={{ alignSelf: "flex-start", maxWidth: 400, width: "100%" }}
                   {...register("position")}
                >
-                  <MenuItem value="unspecified" selected>
-                     None
+                  <MenuItem value="Unspecified" selected>
+                     Unspecified
                   </MenuItem>
                </Select>
             </FormControl>

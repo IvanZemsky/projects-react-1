@@ -1,17 +1,22 @@
 import { Card, CardContent, Stack, Typography } from "@mui/material";
-import { Project } from "../model/types";
 import { Link } from "react-router-dom";
 import { Routes } from "@/shared/constants";
 import { setPath } from "@/shared/lib";
 import { theme } from "@/shared/theme/theme";
 
-type Props = {} & Project;
+type Props = {
+   id: string;
+   name: string;
+   description: string;
+   lead: string;
+   startDate: string;
+   endDate: string;
+};
 
 export const ProjectCard = ({
    id,
    name,
    description,
-   team,
    lead,
    startDate,
    endDate,
@@ -20,7 +25,7 @@ export const ProjectCard = ({
       <Card
          variant="outlined"
          component={Link}
-         to={setPath(Routes.Projects, id)}
+         to={'/' + setPath(Routes.Projects, id)}
          sx={{ textDecoration: "none", ":hover": { boxShadow: 5 } }}
       >
          <CardContent

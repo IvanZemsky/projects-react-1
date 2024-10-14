@@ -6,7 +6,7 @@ type Props = {
 }
 export const PageHeader = ({title, children}: PropsWithChildren<Props>) => {
    return ( 
-      <Stack direction="row" spacing={1} sx={{mb: 1}}>
+      <Stack direction="row" spacing={1} sx={{mb: 2}}>
          <Typography variant="h1">{title}</Typography>
          {children}
       </Stack>

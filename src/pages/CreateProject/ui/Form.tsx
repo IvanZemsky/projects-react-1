@@ -1,5 +1,7 @@
 import { executorStorage } from "@/entities/Executor";
 import { CreateProjectDto, projectStorage } from "@/entities/Project";
+import { Routes } from "@/shared/constants";
+import { setPath } from "@/shared/lib";
 import {
    Stack,
    Typography,
@@ -45,12 +47,11 @@ export const Form = () => {
          lead: getValues("lead"),
          startDate: getValues("startDate"),
          endDate: getValues("endDate"),
-         img: "",
       };
 
       const newProject = projectStorage.create(project);
       if (newProject) {
-         navigate(newProject.id);
+         navigate('/' + setPath(Routes.Projects, newProject.id));
       }
    };
 
