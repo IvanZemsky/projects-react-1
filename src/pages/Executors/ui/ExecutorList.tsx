@@ -8,7 +8,7 @@ export const ExecutorList = ({}: Props) => {
    const executors = executorStorage.get()
 
    if (!executors || !executors.length) {
-      return <p>You haven't added any projects yet</p>
+      return <p>You haven't added any executors yet</p>
    }
 
    return ( 

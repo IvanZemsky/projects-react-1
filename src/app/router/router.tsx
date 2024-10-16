@@ -8,7 +8,7 @@ import { Executors } from "@/pages/Executors/ui/Executors";
 import { CreateExecutor } from "@/pages/CreateExecutor";
 import { CreatePosition } from "@/pages/CreatePosition";
 import { Positions } from "@/pages/Positions";
-import { CreateProject, Project, Projects } from "./lazyPages";
+import { CreateProject, CreateTask, Project, Projects } from "./lazyPages";
 
 export const router = createHashRouter([
    {
@@ -27,6 +27,10 @@ export const router = createHashRouter([
          {
             path: setPath(Routes.Projects, ':id'),
             element: <Project />,
+         },
+         {
+            path: setPath(Routes.Projects, ':id', 'create-task'),
+            element: <CreateTask />,
          },
          {
             path: setPath(Routes.Projects, Routes.Create),

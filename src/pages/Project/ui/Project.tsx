@@ -1,27 +1,34 @@
 import { projectStorage } from "@/entities/Project";
+import { BtnLink } from "@/shared/ui";
 import { PageHeader } from "@/widgets/PageHeader";
-import { Box } from "@mui/material";
+import { Grid2 as Grid } from "@mui/material";
 import { useParams } from "react-router-dom";
+import { ProjectTasks } from "./ProjectTasks";
 
 type Params = {
-   id: string
-}
+   id: string;
+};
 
-type Props = {
- 
-}
+type Props = {};
 export const Project = ({}: Props) => {
-   const {id} = useParams<Params>()
+   const { id } = useParams<Params>();
 
-   const projectData = projectStorage.getById(id as string)
+   const projectData = projectStorage.getById(id as string);
 
    if (!projectData) {
-      return <p>Error</p>
+      return <p>Error</p>;
    }
 
-   return ( 
-      <Box>
-         <PageHeader title={projectData.name}/>
-      </Box>
+   return (
+      <Grid container direction="column" sx={{ flexGrow: 1 }}>
+         <Grid>
+            <PageHeader title={projectData.name}>
+               <BtnLink to="create-task" variant="contained">
+                  Add task
+               </BtnLink>
+            </PageHeader>
+         </Grid>
+         <ProjectTasks projectId={id as string}/>
+      </Grid>
    );
-}
+};

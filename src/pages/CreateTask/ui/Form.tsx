@@ -1,5 +1,5 @@
 import { executorStorage } from "@/entities/Executor";
-import { CreateProjectDto, projectStorage } from "@/entities/Project";
+import { CreateTaskDto, taskStorage } from "@/entities/Task";
 import { Routes } from "@/shared/constants";
 import { setPath } from "@/shared/lib";
 import {
@@ -13,24 +13,28 @@ import {
    Select,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 type FormValues = {
-   name: string
-   description: string
-   leadId: string
-   startDate: string
-   endDate: string
+   name: string;
+   description: string;
+   assigneeId: string;
+   status: string;
 };
 
 export const Form = () => {
+   const { id } = useParams();
+
+   if (!id) {
+      return <p>Error</p>;
+   }
+
    const form = useForm<FormValues>({
       defaultValues: {
          name: "",
          description: "",
-         leadId: "Unspecified",
-         endDate: '',
-         startDate: '',
+         assigneeId: "unspecified",
+         status: "To do",
       },
    });
 
@@ -41,38 +45,38 @@ export const Form = () => {
    const executors = executorStorage.get();
 
    const onSubmit = () => {
-      const project: CreateProjectDto = {
+      const task: CreateTaskDto = {
+         projectId: id,
          name: getValues("name"),
          description: getValues("description"),
-         leadId: getValues("leadId"),
-         startDate: getValues("startDate"),
-         endDate: getValues("endDate"),
+         assigneeId: getValues("assigneeId"),
+         status: getValues("status"),
       };
-
-      const newProject = projectStorage.create(project);
-      if (newProject) {
-         navigate('/' + setPath(Routes.Projects, newProject.id));
+      console.log(task);
+      const newTask = taskStorage.create(task);
+      if (newTask) {
+         navigate("/" + setPath(Routes.Projects, newTask.projectId));
       }
    };
 
    return (
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
          <Stack spacing={2}>
-            <Typography variant="h1">New project</Typography>
+            <Typography variant="h1">New task</Typography>
 
             <TextField
-               id="project-name"
+               id="task-name"
                label="Name"
                variant="filled"
                sx={{ alignSelf: "flex-start", maxWidth: 400, width: "100%" }}
                size="small"
                {...register("name", {
-                  required: true
+                  required: true,
                })}
             />
 
             <TextField
-               id="project-description"
+               id="task-description"
                label="Description"
                variant="filled"
                sx={{ alignSelf: "flex-start", maxWidth: 400, width: "100%" }}
@@ -84,16 +88,16 @@ export const Form = () => {
             />
 
             <FormControl fullWidth>
-               <InputLabel id="project-lead-label">Lead</InputLabel>
+               <InputLabel id="task-assignee-label">Assignee</InputLabel>
                <Select
-                  id="project-lead"
-                  labelId="project-lead-label"
-                  label="Lead"
-                  defaultValue="Unspecified"
+                  id="task-assignee"
+                  labelId="task-assignee-label"
+                  label="Assignee"
+                  defaultValue="unspecified"
                   sx={{ alignSelf: "flex-start", maxWidth: 400, width: "100%" }}
-                  {...register("leadId")}
+                  {...register("assigneeId")}
                >
-                  <MenuItem value="Unspecified" selected>
+                  <MenuItem value="unspecified" selected>
                      Unspecified
                   </MenuItem>
                   {!!executors?.length &&
@@ -105,31 +109,24 @@ export const Form = () => {
                </Select>
             </FormControl>
 
-            <TextField
-               id="project-start-date"
-               label="Start date"
-               slotProps={{inputLabel: {shrink: true}}}
-               variant="filled"
-               sx={{ alignSelf: "flex-start", maxWidth: 400, width: "100%" }}
-               size="small"
-               type="date"
-               {...register("startDate", {
-                  required: true
-               })}
-            />
-
-            <TextField
-               id="project-end-date"
-               label="End date"
-               slotProps={{inputLabel: {shrink: true}}}
-               variant="filled"
-               sx={{ alignSelf: "flex-start", maxWidth: 400, width: "100%" }}
-               size="small"
-               type="date"
-               {...register("endDate", {
-                  required: true
-               })}
-            />
+            <FormControl fullWidth>
+               <InputLabel id="task-status-label">Status</InputLabel>
+               <Select
+                  id="task-status"
+                  labelId="task-status-label"
+                  label="Status"
+                  defaultValue="To do"
+                  sx={{ alignSelf: "flex-start", maxWidth: 400, width: "100%" }}
+                  {...register("status")}
+               >
+                  <MenuItem value="To do" selected>
+                     To do
+                  </MenuItem>
+                  <MenuItem value="In progress">In progress</MenuItem>
+                  <MenuItem value="Code review">Code review</MenuItem>
+                  <MenuItem value="Done">Done</MenuItem>
+               </Select>
+            </FormControl>
 
             <Button
                variant="contained"

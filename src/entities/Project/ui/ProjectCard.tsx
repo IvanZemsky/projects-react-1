@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import { Routes } from "@/shared/constants";
 import { setPath } from "@/shared/lib";
 import { theme } from "@/shared/theme/theme";
+import { Executor } from "@/entities/Executor";
 
 type Props = {
    id: string;
    name: string;
    description: string;
-   lead: string;
+   lead: Executor;
    startDate: string;
    endDate: string;
 };
@@ -49,7 +50,7 @@ export const ProjectCard = ({
                      borderRadius: 1,
                   }}
                >
-                  {lead}
+                  {lead.name}
                </Typography>
                <Typography>
                   {startDate} - {endDate}

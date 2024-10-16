@@ -1,39 +1,44 @@
 import { AppStorage, formatDate } from "@/shared/lib";
 import { CreateProjectDto, Project } from "./types";
 import { v4 as uuidv4 } from "uuid";
+import { executorStorage } from "@/entities/Executor/@x/project";
 
 class ProjectStorage {
    constructor() {
-      const projects = AppStorage.getItems<Project[]>("projects");
+      const projects = AppStorage.get<Project[]>("projects");
       if (!projects) {
-         AppStorage.setItems<Project>("projects", []);
+         AppStorage.set<Project[]>("projects", []);
       }
    }
 
    public get = () => {
-      return AppStorage.getItems<Project>("projects");
+      return AppStorage.get<Project[]>("projects");
    };
 
    public getById = (id: string) => {
-      return AppStorage.getItems<Project, Project>("projects", (projects) =>
+      return AppStorage.get<Project[], Project>("projects", (projects) =>
          projects.find((project) => project.id === id)
       );
    };
 
-   public create = (projectDto: CreateProjectDto) => {
+   public create = (dto: CreateProjectDto) => {
+      const executor = executorStorage.getById(dto.leadId)
+
+      if (!executor) return null
+
       const project: Project = {
-         ...projectDto,
          id: uuidv4(),
-         team: [],
-         startDate: formatDate(projectDto.startDate),
-         endDate: formatDate(projectDto.endDate),
+         name: dto.name,
+         description: dto.description,
+         lead: executor,
+         team: [executor.id],
+         startDate: formatDate(dto.startDate),
+         endDate: formatDate(dto.endDate),
       };
 
-      const newProject = AppStorage.setItems<Project>(
-         "projects",
-         project,
+      const newProject = AppStorage.set<Project[], Project>("projects", project,
          (items) => ({
-            newItems: [...items, project] as Project[],
+            newItems: [...items, project],
             returnValue: project,
          })
       );

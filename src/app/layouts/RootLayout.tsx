@@ -1,5 +1,5 @@
 import { Navbar } from "@/widgets/Navbar";
-import { Box, Grid2 as Grid, } from "@mui/material";
+import { Box, Grid2 as Grid } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import { Header } from "@/widgets/Header";
 import { Suspense } from "react";
@@ -8,10 +8,8 @@ import { PageBreadcrumbs } from "@/shared/ui";
 
 export const RootLayout = () => {
    return (
-      <Box
-         sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
-      >
-         <Header/>
+      <Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+         <Header />
          <Grid container size="grow">
             <Navbar />
             <Grid
@@ -25,8 +23,8 @@ export const RootLayout = () => {
                }}
             >
                <PageBreadcrumbs />
-               <Suspense fallback={<Loader size={50}/>}>
-                <Outlet />  
+               <Suspense fallback={<Loader size={50} />}>
+                  <Outlet />
                </Suspense>
             </Grid>
          </Grid>

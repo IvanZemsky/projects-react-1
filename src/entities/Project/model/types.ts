@@ -4,8 +4,8 @@ export type Project = {
    id: string
    name: string
    description: string
-   team: Executor[]
-   lead: string
+   team: string[] // ids
+   lead: Executor
    startDate: string
    endDate: string
 }
@@ -13,7 +13,7 @@ export type Project = {
 export type CreateProjectDto = {
    name: string
    description: string
-   lead: string
+   leadId: string
    startDate: string
    endDate: string
 }

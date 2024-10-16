@@ -1,7 +1,8 @@
 export class AppStorage {
-   public static getItems = <T, P = T>(
+
+   public static get = <T, P = T>(
       key: string,
-      callback?: (allItems: T[]) => P | null | undefined
+      callback?: (items: T) => P | null | undefined
    ): P | null | undefined => {
       const data = localStorage.getItem(key) || null
       if (!data) return null
@@ -15,27 +16,28 @@ export class AppStorage {
          }
    };
 
-   public static setItems = <T, P = T>(
+   public static set = <T, P = T>(
       key: string,
-      value: T,
-      callback?: (previousItems: T[]) => {newItems: T[], returnValue: P}
-   ): P | null | void | undefined => {
+      value: P,
+      callback?: (previousItems: T) => {newItems: T, returnValue: P}
+   ): P | null | undefined => {
       try {
          let response: P | null | undefined
 
          if (callback) {
-            const previousItems = AppStorage.getItems<T[]>(key);
+            const previousItems = localStorage.getItem(key) || null
+            console.log('as', previousItems)
 
             if (!previousItems) {
-               throw new Error(`There is no data on key '${key}' or error occured`)
+               return null
             }
 
-            const {newItems, returnValue} = callback(previousItems)
+            const {newItems, returnValue} = callback(JSON.parse(previousItems))
             localStorage.setItem(key, JSON.stringify(newItems));
             response = returnValue
          } else {
             localStorage.setItem(key, JSON.stringify(value));
-            response = AppStorage.getItems<P>(key);
+            response = AppStorage.get<P>(key);
          }
 
          return response
