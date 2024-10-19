@@ -22,7 +22,7 @@ export const ExecutorCard = ({ id, name, position }: Props) => {
                <Typography sx={{ fontWeight: 500, fontSize: 20 }}>
                   {name}
                </Typography>
-               <Typography>{position}</Typography>
+               <Typography>{position || 'Unspecified position'}</Typography>
             </Stack>
          </CardContent>
       </Card>

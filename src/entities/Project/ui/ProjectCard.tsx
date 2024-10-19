@@ -9,7 +9,7 @@ type Props = {
    id: string;
    name: string;
    description: string;
-   lead: Executor;
+   lead: Executor | null;
    startDate: string;
    endDate: string;
 };
@@ -50,7 +50,7 @@ export const ProjectCard = ({
                      borderRadius: 1,
                   }}
                >
-                  {lead.name}
+                  {lead?.name || 'Unspecified lead'}
                </Typography>
                <Typography>
                   {startDate} - {endDate}

@@ -1,7 +1,8 @@
-import { AppStorage, formatDate } from "@/shared/lib";
+import { AppStorage } from "@/shared/lib";
 import { v4 as uuidv4 } from "uuid";
 import { CreateTaskDto, Task } from "./types";
 import { executorStorage } from "@/entities/Executor/@x/task";
+import { SpecialValues } from "@/shared/constants";
 
 class TaskStorage {
    constructor() {
@@ -22,9 +23,10 @@ class TaskStorage {
    };
 
    public create = (dto: CreateTaskDto) => {
-      const executor = executorStorage.getById(dto.assigneeId)
+      const isUnspecified = dto.assigneeId === SpecialValues.Unspecified
+      const executor = isUnspecified ? null : executorStorage.getById(dto.assigneeId)
 
-      if (!executor) return null
+      const team = executor?.id ? [executor.id] : []
 
       const task: Task = {
          id: uuidv4(),
@@ -32,7 +34,7 @@ class TaskStorage {
          name: dto.name,
          description: dto.description,
          assignee: executor,
-         team: [executor.id],
+         team,
          status: dto.status
       };
 

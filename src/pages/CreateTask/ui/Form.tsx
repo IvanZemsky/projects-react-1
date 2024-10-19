@@ -1,6 +1,6 @@
 import { executorStorage } from "@/entities/Executor";
 import { CreateTaskDto, taskStorage } from "@/entities/Task";
-import { Routes } from "@/shared/constants";
+import { SpecialValues, Routes } from "@/shared/constants";
 import { setPath } from "@/shared/lib";
 import {
    Stack,
@@ -33,7 +33,7 @@ export const Form = () => {
       defaultValues: {
          name: "",
          description: "",
-         assigneeId: "unspecified",
+         assigneeId: SpecialValues.Unspecified,
          status: "To do",
       },
    });
@@ -93,11 +93,11 @@ export const Form = () => {
                   id="task-assignee"
                   labelId="task-assignee-label"
                   label="Assignee"
-                  defaultValue="unspecified"
+                  defaultValue={SpecialValues.Unspecified}
                   sx={{ alignSelf: "flex-start", maxWidth: 400, width: "100%" }}
                   {...register("assigneeId")}
                >
-                  <MenuItem value="unspecified" selected>
+                  <MenuItem value={SpecialValues.Unspecified} selected>
                      Unspecified
                   </MenuItem>
                   {!!executors?.length &&

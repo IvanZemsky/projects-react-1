@@ -1,1 +1,1 @@
-export { Positions } from "./ui/Positions";
+export { Positions as default } from "./ui/Positions";

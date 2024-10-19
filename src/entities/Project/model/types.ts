@@ -5,7 +5,7 @@ export type Project = {
    name: string
    description: string
    team: string[] // ids
-   lead: Executor
+   lead: Executor | null
    startDate: string
    endDate: string
 }

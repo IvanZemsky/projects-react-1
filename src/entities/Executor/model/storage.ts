@@ -1,5 +1,7 @@
 import { AppStorage } from "@/shared/lib";
-import type { Executor } from "./types";
+import type { CreateExecutorDto, Executor } from "./types";
+import { SpecialValues } from "@/shared/constants";
+import { v4 as uuidv4 } from "uuid";
 
 class ExecutorStorage {
    constructor() {
@@ -19,7 +21,15 @@ class ExecutorStorage {
       );
    };
 
-   public create = (executor: Executor) => {
+   public create = (dto: CreateExecutorDto) => {
+      const position = dto.position === SpecialValues.Unspecified ? null : dto.position
+
+      const executor: Executor = {
+         id: uuidv4(),
+         name: dto.name,
+         position,
+      }
+
       const newExecutor = AppStorage.set<Executor[], Executor>("executors", executor,
          (items) => ({
             newItems: [...items, executor],

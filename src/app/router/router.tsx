@@ -1,14 +1,19 @@
-import { createHashRouter } from "react-router-dom";
-import { RootLayout } from "../layouts/RootLayout";
-import { Routes } from "@/shared/constants";
-import { App } from "../App";
-import { setPath } from "@/shared/lib";
-import { NotFoundPage } from "@/pages/NotFoundPage";
-import { Executors } from "@/pages/Executors/ui/Executors";
-import { CreateExecutor } from "@/pages/CreateExecutor";
-import { CreatePosition } from "@/pages/CreatePosition";
-import { Positions } from "@/pages/Positions";
-import { CreateProject, CreateTask, Project, Projects } from "./lazyPages";
+import { createHashRouter } from "react-router-dom"
+import { RootLayout } from "../layouts/RootLayout"
+import { Routes } from "@/shared/constants"
+import { App } from "../App"
+import { setPath } from "@/shared/lib"
+import { NotFoundPage } from "@/pages/NotFoundPage"
+import { Executors } from "@/pages/Executors/ui/Executors"
+import {
+   CreateExecutor,
+   CreatePosition,
+   CreateProject,
+   CreateTask,
+   Positions,
+   Project,
+   Projects,
+} from "./lazyPages"
 
 export const router = createHashRouter([
    {
@@ -25,11 +30,11 @@ export const router = createHashRouter([
             element: <Projects />,
          },
          {
-            path: setPath(Routes.Projects, ':id'),
+            path: setPath(Routes.Projects, ":id"),
             element: <Project />,
          },
          {
-            path: setPath(Routes.Projects, ':id', 'create-task'),
+            path: setPath(Routes.Projects, ":id", "create-task"),
             element: <CreateTask />,
          },
          {
@@ -54,4 +59,4 @@ export const router = createHashRouter([
          },
       ],
    },
-]);
+])

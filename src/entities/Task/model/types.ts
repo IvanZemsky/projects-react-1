@@ -5,7 +5,7 @@ export type Task = {
    projectId: string
    name: string
    description: string
-   assignee: Executor
+   assignee: Executor | null
    team: string[] // ids
    status: string
 }

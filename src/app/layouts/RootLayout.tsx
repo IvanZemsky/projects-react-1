@@ -1,10 +1,10 @@
-import { Navbar } from "@/widgets/Navbar";
-import { Box, Grid2 as Grid } from "@mui/material";
-import { Outlet } from "react-router-dom";
-import { Header } from "@/widgets/Header";
-import { Suspense } from "react";
-import { Loader } from "@/shared/ui";
-import { PageBreadcrumbs } from "@/shared/ui";
+import { Navbar } from "@/widgets/Navbar"
+import { Box, Grid2 as Grid } from "@mui/material"
+import { Outlet } from "react-router-dom"
+import { Header } from "@/widgets/Header"
+import { Suspense } from "react"
+import { Loader } from "@/shared/ui"
+import { PageBreadcrumbs } from "@/shared/ui"
 
 export const RootLayout = () => {
    return (
@@ -29,5 +29,5 @@ export const RootLayout = () => {
             </Grid>
          </Grid>
       </Box>
-   );
-};
+   )
+}

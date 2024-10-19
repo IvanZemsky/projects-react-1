@@ -1,1 +1,1 @@
-export { CreatePosition } from "./ui/CreatePosition";
+export { CreatePosition as default } from "./ui/CreatePosition"

@@ -1,6 +1,6 @@
 import { executorStorage } from "@/entities/Executor";
 import { CreateProjectDto, projectStorage } from "@/entities/Project";
-import { Routes } from "@/shared/constants";
+import { Routes, SpecialValues } from "@/shared/constants";
 import { setPath } from "@/shared/lib";
 import {
    Stack,
@@ -28,7 +28,7 @@ export const Form = () => {
       defaultValues: {
          name: "",
          description: "",
-         leadId: "Unspecified",
+         leadId: SpecialValues.Unspecified,
          endDate: '',
          startDate: '',
       },
@@ -89,11 +89,11 @@ export const Form = () => {
                   id="project-lead"
                   labelId="project-lead-label"
                   label="Lead"
-                  defaultValue="Unspecified"
+                  defaultValue={SpecialValues.Unspecified}
                   sx={{ alignSelf: "flex-start", maxWidth: 400, width: "100%" }}
                   {...register("leadId")}
                >
-                  <MenuItem value="Unspecified" selected>
+                  <MenuItem value={SpecialValues.Unspecified} selected>
                      Unspecified
                   </MenuItem>
                   {!!executors?.length &&

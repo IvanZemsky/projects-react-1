@@ -10,13 +10,13 @@ import {
 import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 
-import { executorStorage } from "@/entities/Executor";
+import { CreateExecutorDto, executorStorage } from "@/entities/Executor";
 import { useNavigate } from "react-router-dom";
-import { Routes } from "@/shared/constants";
+import { Routes, SpecialValues } from "@/shared/constants";
 
 type FormValues = {
    name: string;
-   position: string;
+   position: string | null;
 };
 
 type Props = {};
@@ -24,7 +24,7 @@ export const Form = ({}: Props) => {
    const form = useForm<FormValues>({
       defaultValues: {
          name: "",
-         position: "Unspecified",
+         position: SpecialValues.Unspecified,
       },
    });
 
@@ -33,8 +33,7 @@ export const Form = ({}: Props) => {
    const { register, handleSubmit, getValues } = form;
 
    const onSubmit = (data: FormValues) => {
-      const executor = {
-         id: uuidv4(),
+      const executor: CreateExecutorDto = {
          name: getValues("name"),
          position: getValues("position"),
       };
@@ -63,11 +62,11 @@ export const Form = ({}: Props) => {
                   id="executor-position"
                   labelId="executor-position-label"
                   label="Position"
-                  value="Unspecified"
+                  value={SpecialValues.Unspecified}
                   sx={{ alignSelf: "flex-start", maxWidth: 400, width: "100%" }}
                   {...register("position")}
                >
-                  <MenuItem value="Unspecified" selected>
+                  <MenuItem value={SpecialValues.Unspecified} selected>
                      Unspecified
                   </MenuItem>
                </Select>

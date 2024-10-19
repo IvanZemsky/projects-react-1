@@ -9,7 +9,7 @@ type Props = {
    projectId: string;
    name: string;
    description: string;
-   assignee: Executor;
+   assignee: Executor | null;
    team: string[]; // ids
    status: string;
 };
@@ -32,6 +32,7 @@ export const TaskCard = ({
          <CardContent>
             <Stack spacing={1}>
                <Typography>{name}</Typography>
+               <Typography>{assignee?.name || 'Unspecified lead'}</Typography>
             </Stack>
          </CardContent>
       </Card>
