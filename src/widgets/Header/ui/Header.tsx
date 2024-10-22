@@ -14,7 +14,7 @@ const linkSx: SxProps = {
 
 export const Header = () => {
    return (
-      <AppBar position="static">
+      <AppBar position="static" sx={{zIndex: 800}}>
          <Toolbar
             variant="dense"
             sx={{

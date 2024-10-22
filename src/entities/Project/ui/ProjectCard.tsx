@@ -26,7 +26,7 @@ export const ProjectCard = ({
       <Card
          variant="outlined"
          component={Link}
-         to={'/' + setPath(Routes.Projects, id)}
+         to={setPath("", Routes.Projects, id)}
          sx={{ textDecoration: "none", ":hover": { boxShadow: 5 } }}
       >
          <CardContent

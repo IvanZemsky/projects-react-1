@@ -18,7 +18,7 @@ export const ProjectTasks = ({ projectId }: Props) => {
    return (
       <Grid container spacing={2} size="grow">
          {statuses.map((status) => (
-            <Grid key={status} size="grow">
+            <Grid key={status} sx={{height: '100%', flexGrow: 1}}>
                <TaskColumn label={status} tasks={filterTasksByStatus(status, tasks)} />
             </Grid>
          ))}

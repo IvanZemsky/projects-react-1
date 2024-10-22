@@ -6,7 +6,7 @@ import { Routes } from "@/shared/constants";
 type Props = {
    id: string;
    name: string;
-   position: string;
+   position: string | null;
 };
 
 export const ExecutorCard = ({ id, name, position }: Props) => {

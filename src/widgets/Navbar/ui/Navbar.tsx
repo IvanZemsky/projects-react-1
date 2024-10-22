@@ -13,7 +13,8 @@ export const Navbar = () => {
             gap: 1,
             backgroundColor: blue[600],
             padding: 2,
-            pt: 1
+            pt: 1,
+            zIndex: 801,
          }}
       >
          {navLinks.map((link) => (

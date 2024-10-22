@@ -10,6 +10,7 @@ import {
    CreatePosition,
    CreateProject,
    CreateTask,
+   Docs,
    Positions,
    Project,
    Projects,
@@ -24,6 +25,10 @@ export const router = createHashRouter([
          {
             path: Routes.Home,
             element: <App />,
+         },
+         {
+            path: Routes.Docs,
+            element: <Docs />,
          },
          {
             path: Routes.Projects,

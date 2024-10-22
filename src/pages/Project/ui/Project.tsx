@@ -20,7 +20,7 @@ export const Project = ({}: Props) => {
    }
 
    return (
-      <Grid container direction="column" sx={{ flexGrow: 1 }}>
+      <Grid container direction="column" sx={{ height: '100%' }}>
          <Grid>
             <PageHeader title={projectData.name}>
                <BtnLink to="create-task" variant="contained">

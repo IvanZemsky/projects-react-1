@@ -1,32 +1,44 @@
 import { Navbar } from "@/widgets/Navbar"
-import { Box, Grid2 as Grid } from "@mui/material"
+import { Box, Grid2 as Grid, Stack } from "@mui/material"
 import { Outlet } from "react-router-dom"
 import { Header } from "@/widgets/Header"
-import { Suspense } from "react"
+import { Suspense, useRef } from "react"
 import { Loader } from "@/shared/ui"
 import { PageBreadcrumbs } from "@/shared/ui"
+import { theme } from "@/shared/theme/theme"
 
 export const RootLayout = () => {
+   const scrollContainerRef = useRef<HTMLDivElement>(null)
+
    return (
       <Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
          <Header />
          <Grid container size="grow">
             <Navbar />
-            <Grid
+            <Stack
+               ref={scrollContainerRef}
                sx={{
-                  padding: 2,
-                  paddingTop: 0.5,
-                  paddingRight: 3,
-                  display: "flex",
-                  flexDirection: "column",
                   flexGrow: 1,
+                  overflow: "auto",
+                  maxHeight: "calc(100vh - 40px)", // 40px - Header
                }}
             >
-               <PageBreadcrumbs />
-               <Suspense fallback={<Loader size={50} />}>
-                  <Outlet />
-               </Suspense>
-            </Grid>
+               <PageBreadcrumbs
+                  sticky
+                  sx={{
+                     pt: 0.5,
+                     pr: 3,
+                     pl: 2,
+                     bgcolor: theme.palette.primary.contrastText,
+                  }}
+                  containerRef={scrollContainerRef}
+               />
+               <Box sx={{ p: 2, pt: 0.5, pr: 3, flexGrow: 1, }}>
+                  <Suspense fallback={<Loader size={50} />}>
+                     <Outlet />
+                  </Suspense>
+               </Box>
+            </Stack>
          </Grid>
       </Box>
    )

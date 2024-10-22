@@ -4,5 +4,8 @@ export const formatDate = (dateCode: string | number): string => {
    const month = date.getMonth() + 1
    const day = date.getDate()
 
-   return `${day}.${month}.${year}`
+   const formatedDay = day < 10 ? `0${day}` : day;
+   const formatedMonth = month < 10 ? `0${month}` : month;
+
+   return `${formatedDay}.${formatedMonth}.${year}`
 }
